@@ -1,5 +1,4 @@
-<div class='container' ng-controller='chatroom_controller'>
-
+<div ng-controller='chatroom_controller'>
 	<div class='row' id='header'>
 		<div class='col-xs-8 header_content'>
 			<img id='header_logo' src='./assets/gglogo.png'>
@@ -13,8 +12,6 @@
 	</div>
 	<div id='placeholder_div' class='row'>
 	</div>
-
-
 	<div class='nav_bar'>
 		<a href='#/home'>Home</a>
 		<a href='#/lfg'>Looking for Group</a>
@@ -23,42 +20,42 @@
 		<a href='#/friends'>Friends</a>
 		<a href='#/profile'>Profile</a>
 	</div>
-	<div class='row chatroom_row'>
-		<div class='col-sm-4 col-md-3'>
-			<div ng-repeat='profile in profiles'>
-				<div class='mini_profile' id='{{profile._id}}'>
-					<ul class='list-unstyled'>
-						<li><span class='profile_key'>User:</span> {{profile.username}}</li>
-						<li ><span class='profile_key'>Style:</span> {{profile.gamer_style}}</li>
-						<li><span class='profile_key'>Comms:</span> {{profile.communication_pref}}</li>
-						<li>
-							<section class='flat push_up'>
-								<button id='profile_id{{profile._id}}' class='click_button add_friend_profile_button' ng-click='add_friend(profile._id)'>Add Friend</button>
-							</section>
-						</li>
-					</ul>
+	<div class='container'>
+		<div class='row chatroom_row'>
+			<div class='col-sm-4 col-md-3'>
+				<div ng-repeat='profile in profiles'>
+					<div class='mini_profile' id='{{profile._id}}'>
+						<ul class='list-unstyled'>
+							<li><span class='profile_key'>User:</span> {{profile.username}}</li>
+							<li ><span class='profile_key'>Style:</span> {{profile.gamer_style}}</li>
+							<li><span class='profile_key'>Comms:</span> {{profile.communication_pref}}</li>
+							<li>
+								<section class='flat push_up'>
+									<button id='profile_id{{profile._id}}' class='click_button add_friend_profile_button' ng-click='add_friend(profile._id)'>Add Friend</button>
+								</section>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div id='profile'>
 				</div>
 			</div>
-			<div id='profile'>
-			</div>
-		</div>
-
-		<div class='col-sm-8 col-md-9'>
-			<div id='chatroom'>
-			</div>
-			<form role='form'>
-				<div class='form-group'>
-					<label class='input_label'>Message:</label>
-					<input class='form-control' id='message' type='text' name='message'>
+			<div class='col-sm-8 col-md-9'>
+				<div id='chatroom'>
 				</div>
-				<section class='flat'>
-					<button class='profile_button' type='submit'>Send</button>
-				</section>
-			</form>
+				<form role='form'>
+					<div class='form-group'>
+						<label class='input_label'>Message:</label>
+						<input class='form-control' id='message' type='text' name='message'>
+					</div>
+					<section class='flat'>
+						<button class='profile_button' type='submit'>Send</button>
+					</section>
+				</form>
+			</div>
 		</div>
 	</div>
-
-	<nav class="navbar navbar-default navbar-fixed-bottom">
+	<nav id="nav_bottom" class="navbar navbar-default navbar-fixed-bottom">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">

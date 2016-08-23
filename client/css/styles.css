@@ -61,15 +61,13 @@ button:focus {
   height: 50px; }
 
 section.flat button {
-  background-color: #fbf5f3;
-  color: #e2c79a;
-  text-shadow: -1px 1px #0f0e0e;
+  background-color: #522b47;
+  color: #fbf5f3;
   border: none; }
 
 section.flat button:hover,
 section.flat button.hover {
-  background-color: #0f0e0e;
-  text-shadow: -1px 1px #fbf5f3; }
+  background-color: #BF7E56; }
 
 section {
   display: inline-block;
@@ -83,10 +81,11 @@ section {
 
 .error {
   font-family: bodytxt;
-  color: #fbf5f3;
+  color: #7b0828;
   font-size: .7em; }
 
 .click_button {
+  padding: .8em;
   border-radius: .3em;
   font-family: bodytxt; }
 
@@ -278,6 +277,13 @@ section {
 
 #bars_container {
   height: 100%; }
+
+#register_here {
+  color: #fbf5f3; }
+
+#register_here:hover {
+  color: #BF7E56;
+  text-decoration: none; }
 
 @media (max-width: 400px) {
   .main_label {

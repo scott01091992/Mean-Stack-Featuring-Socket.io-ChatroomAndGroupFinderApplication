@@ -1,5 +1,4 @@
-<div class='container' ng-controller='friends_controller'>
-
+<div ng-controller='friends_controller'>
 	<div class='row' id='header'>
 		<div class='col-xs-8 header_content'>
 			<img id='header_logo' src='./assets/gglogo.png'>
@@ -11,9 +10,6 @@
 			</section>
 		</div>
 	</div>
-	<div id='placeholder_div' class='row'>
-	</div>
-
 	<div class='nav_bar'>
 		<a href='#/home'>Home</a>
 		<a href='#/lfg'>Looking for Group</a>
@@ -22,84 +18,82 @@
 		<a href='#/friends'>Friends</a>
 		<a href='#/profile'>Profile</a>
 	</div>
-	<div class='form-group'>
-			<label class='input_label'>Search:</label>
-			<input class='form-control' type='text' ng-model='search'>
-	</div>
-	<!-- Results to search-> only revealed after 2 letters typed and there are at least 1 result-->
-	<div ng-show="(resultData = (all_users | filter:search)) && resultData.length >= 1 && search && search.length >= 2">
-		<div class='row outline_content' ng-repeat='result in resultData'>
-			<div class='col-xs-4'>
-				<img class='userimg' src='./assets/user.png'>
-			</div>
-			<div class='col-xs-4 friend_detail'>
-				{{result.username}}
-			</div>
-			<div class='col-xs-4 friend_detail'>
-				<section class='flat'>
-					<button id='add_friend_button_{{$index}}' class='click_button' ng-click='add_friend(result._id, $index)'>Add friend</button>
-				</section>
+	<div class='container'>
+		<div class='form-group'>
+				<label class='input_label'>Search:</label>
+				<input class='form-control' type='text' ng-model='search'>
+		</div>
+		<!-- Results to search-> only revealed after 2 letters typed and there are at least 1 result-->
+		<div ng-show="(resultData = (all_users | filter:search)) && resultData.length >= 1 && search && search.length >= 2">
+			<div class='row outline_content' ng-repeat='result in resultData'>
+				<div class='col-xs-4'>
+					<img class='userimg' src='./assets/user.png'>
+				</div>
+				<div class='col-xs-4 friend_detail'>
+					{{result.username}}
+				</div>
+				<div class='col-xs-4 friend_detail'>
+					<section class='flat'>
+						<button id='add_friend_button_{{$index}}' class='click_button' ng-click='add_friend(result._id, $index)'>Add friend</button>
+					</section>
+				</div>
 			</div>
 		</div>
-	</div>
-
-	<div class='friends_container' ng-repeat='friend in friends track by $index'>
-		<div class='row outline_content' ng-click='show_details($index)'>
-			<div class='col-sm-3 col-xs-6 friend_image'>
-				<img class='userimg' src='./assets/user.png'>
+		<div class='friends_container' ng-repeat='friend in friends track by $index'>
+			<div class='row outline_content' ng-click='show_details($index)'>
+				<div class='col-sm-3 col-xs-6 friend_image'>
+					<img class='userimg' src='./assets/user.png'>
+				</div>
+				<div class='col-sm-3 col-xs-6 friend_detail'>
+					{{friend.username}}
+				</div>
+				<div class='col-sm-3 col-xs-6 friend_detail'>
+					{{friend.gamer_style}}
+				</div>
+				<div class='col-sm-3 col-xs-6 friend_detail'>
+					{{friend.status}}
+				</div>
 			</div>
-			<div class='col-sm-3 col-xs-6 friend_detail'>
-				{{friend.username}}
-			</div>
-			<div class='col-sm-3 col-xs-6 friend_detail'>
-				{{friend.gamer_style}}
-			</div>
-			<div class='col-sm-3 col-xs-6 friend_detail'>
-				{{friend.status}}
+			<!-- show on click -->
+			<div id='rating_id_{{$index}}' class='row friends_row' style='display: none'>
+				<form id='button_group_{{$index}}'>
+						<div class='col-sm-2 col-xs-6 friend_radio_button'>
+							<label class="radio-inline"><input ng-model='gamer_type[friend]' ng-change='radio_change(friend._id, "hardcore_rating")' value='Hardcore' type="radio" name="radio{{$index}}">Hardcore</label>
+						</div>
+						<div class='col-sm-2 col-xs-6 friend_radio_button'>
+							<label class="radio-inline"><input ng-model='gamer_type[friend]' ng-change='radio_change(friend._id, "casual_rating")' value='Casual' type="radio" name="radio{{$index}}">Casual</label>
+						</div>
+						<div class='col-sm-2 col-xs-6 friend_radio_button'>
+							<label class="radio-inline"><input ng-model='gamer_type[friend]' ng-change='radio_change(friend._id, "troll_rating")' value='Troll' type="radio" name="radio{{$index}}">Troll</label>
+						</div>
+						<div class='col-sm-2 col-xs-6 friend_radio_button'>
+							<label class="radio-inline"><input ng-model='gamer_type[friend]' ng-change='radio_change(friend._id, "coop_rating")' value='Co-op' type="radio" name="radio{{$index}}">Co-op</label>
+						</div>
+						<div class='col-sm-2 col-xs-6 friend_radio_button'>
+							<label class="radio-inline"><input ng-model='gamer_type[friend]' ng-change='radio_change(friend._id, "role_play_rating")'value='Role Play' type="radio" name="radio{{$index}}">Role Play</label>
+						</div>
+						<div class='col-sm-2 col-xs-6 friend_radio_button'>
+							<section class='flat'>
+								<button class='profile_button' ng-click='remove_friend(friend._id)'>Remove</button>
+							</section>
+						</div>
+				</form>
 			</div>
 		</div>
-
-		<!-- show on click -->
-		<div id='rating_id_{{$index}}' class='row friends_row' style='display: none'>
-			<form id='button_group_{{$index}}'>
-					<div class='col-sm-2 col-xs-6 friend_radio_button'>
-						<label class="radio-inline"><input ng-model='gamer_type[friend]' ng-change='radio_change(friend._id, "hardcore_rating")' value='Hardcore' type="radio" name="radio{{$index}}">Hardcore</label>
-					</div>
-					<div class='col-sm-2 col-xs-6 friend_radio_button'>
-						<label class="radio-inline"><input ng-model='gamer_type[friend]' ng-change='radio_change(friend._id, "casual_rating")' value='Casual' type="radio" name="radio{{$index}}">Casual</label>
-					</div>
-					<div class='col-sm-2 col-xs-6 friend_radio_button'>
-						<label class="radio-inline"><input ng-model='gamer_type[friend]' ng-change='radio_change(friend._id, "troll_rating")' value='Troll' type="radio" name="radio{{$index}}">Troll</label>
-					</div>
-					<div class='col-sm-2 col-xs-6 friend_radio_button'>
-						<label class="radio-inline"><input ng-model='gamer_type[friend]' ng-change='radio_change(friend._id, "coop_rating")' value='Co-op' type="radio" name="radio{{$index}}">Co-op</label>
-					</div>
-					<div class='col-sm-2 col-xs-6 friend_radio_button'>
-						<label class="radio-inline"><input ng-model='gamer_type[friend]' ng-change='radio_change(friend._id, "role_play_rating")'value='Role Play' type="radio" name="radio{{$index}}">Role Play</label>
-					</div>
-					<div class='col-sm-2 col-xs-6 friend_radio_button'>
-						<section class='flat'>
-							<button class='profile_button' ng-click='remove_friend(friend._id)'>Remove</button>
-						</section>
-					</div>
-			</form>
+		<div id='friend_request_box' class='row'>
+				<div class='request' ng-repeat='friend_request in friend_requests'>
+					<h5 class='request_username'>{{friend_request.username}}</h5>
+					<section class='flat'>
+						<button class='click_button' id='friend_button_accept{{$index}}' ng-click='accept_request(friend_request._id, $index)'>Accept</button>
+					</section>
+					<section class='flat'>
+						<button class='click_button' id='friend_button_decline{{$index}}' ng-click='decline_request(friend_request._id, $index)'>Decline</button>
+					</section>
+				</div>
+				<h5 id='pending_requests'>Pending Requests: {{friend_requests.length}}</h5>
 		</div>
 	</div>
-
-	<div id='friend_request_box' class='row'>
-			<div class='request' ng-repeat='friend_request in friend_requests'>
-				<h5 class='request_username'>{{friend_request.username}}</h5>
-				<section class='flat'>
-					<button class='click_button' id='friend_button_accept{{$index}}' ng-click='accept_request(friend_request._id, $index)'>Accept</button>
-				</section>
-				<section class='flat'>
-					<button class='click_button' id='friend_button_decline{{$index}}' ng-click='decline_request(friend_request._id, $index)'>Decline</button>
-				</section>
-			</div>
-			<h5 id='pending_requests'>Pending Requests: {{friend_requests.length}}</h5>
-	</div>
-
-	<nav class="navbar navbar-default navbar-fixed-bottom">
+	<nav id="nav_bottom" class="navbar navbar-default navbar-fixed-bottom">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -122,6 +116,4 @@
 				</ul>
 			</div><!-- /.navbar-collapse -->
 	</nav>
-
-
 </div>

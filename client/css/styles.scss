@@ -73,15 +73,13 @@ button:focus {
   height: 50px;
 }
 section.flat button {
-  background-color: $color1;
-  color: #e2c79a;
-  text-shadow: -1px 1px $color5;
+  background-color: $color3;
+  color: $color1;
   border: none;
 }
 section.flat button:hover,
 section.flat button.hover {
-  background-color: $color5;
-  text-shadow: -1px 1px $color1;
+  background-color: $color2;
 }
 section{
 	display: inline-block;
@@ -95,10 +93,11 @@ section{
 }
 .error{
 	font-family: bodytxt;
-	color: $color1;
+	color: $color4;
 	font-size: .7em;
 }
 .click_button{
+  padding: .8em;
 	border-radius: .3em;
 	font-family: bodytxt;
 }
@@ -376,6 +375,13 @@ section{
 
 
 //LOGIN PAGE
+#register_here{
+  color: $color1;
+}
+#register_here:hover{
+  color: $color2;
+  text-decoration: none;
+}
 @media (max-width: 400px) {
   .main_label
   {

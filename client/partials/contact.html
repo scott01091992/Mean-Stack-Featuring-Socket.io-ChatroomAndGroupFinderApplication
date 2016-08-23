@@ -1,5 +1,4 @@
-<div class='container' ng-controller='contact_controller'>
-
+<div ng-controller='contact_controller'>
 	<div class='row' id='header'>
 		<div class='col-xs-8 header_content'>
 			<img id='header_logo' src='./assets/gglogo.png'>
@@ -11,9 +10,6 @@
 			</section>
 		</div>
 	</div>
-	<div id='placeholder_div' class='row'>
-	</div>
-
 	<div class='nav_bar'>
 		<a href='#/home'>Home</a>
 		<a href='#/lfg'>Looking for Group</a>
@@ -22,25 +18,24 @@
 		<a href='#/friends'>Friends</a>
 		<a href='#/profile'>Profile</a>
 	</div>
-
-	<div class='row'>
-		{{error.message}}
-		<div class='form-group'>
-			<label class='message_input_title'>Message</label>
-			<textarea class='contact_us' ng-model='message'>Leave us a message?</textarea>
+	<div class='container'>
+		<div class='row'>
+			{{error.message}}
+			<div class='form-group'>
+				<label class='message_input_title'>Message</label>
+				<textarea class='contact_us' ng-model='message'>Leave us a message?</textarea>
+			</div>
+		</div>
+		<div class='row contact_row'>
+			<section class='flat'>
+				<button class='contact_button' ng-click='send()'>Send</button>
+			</section>
+			<img class='logo' src='./assets/fblogo.png'>
+			<img class='logo' src='./assets/twlogo.png'>
+			<a class='email' href=''>someguysemail@gmail.com</a>
 		</div>
 	</div>
-
-	<div class='row contact_row'>
-		<section class='flat'>
-			<button class='contact_button' ng-click='send()'>Send</button>
-		</section>
-		<img class='logo' src='./assets/fblogo.png'>
-		<img class='logo' src='./assets/twlogo.png'>
-		<a class='email' href=''>someguysemail@gmail.com</a>
-	</div>
-
-	<nav class="navbar navbar-default navbar-fixed-bottom">
+	<nav id="nav_bottom" class="navbar navbar-default navbar-fixed-bottom">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -63,5 +58,4 @@
 				</ul>
 			</div><!-- /.navbar-collapse -->
 	</nav>
-
 </div>
