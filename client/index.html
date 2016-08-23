@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Discussion Board</title>
+		<!-- Bring in css -->
+		<link rel='stylesheet' href='./css/bootstrap-3.3.6-dist/css/bootstrap.min.css'>
+		<link rel='stylesheet' href='./css/styles.css'>
+
+	</head>
+		<!-- Bring in Framework folder -->
+		<script type="text/javascript" src='./js/frameworks/angular.min.js'></script>
+		<script type="text/javascript" src='./js/frameworks/angular-route.js'></script>
+		<script src='./js/frameworks/jquery-2.2.0.min.js'></script>
+		<script src='./js/frameworks/underscore.js'></script>
+		<script src='./css/bootstrap-3.3.6-dist/js/bootstrap.min.js'></script>
+	 	<script src = '/socket.io/socket.io.js'></script>
+		<script>
+			var myApp = angular.module('myApp', ['ngRoute']);
+		</script>
+		<!-- Routes -->
+		<script type="text/javascript" src='./js/routes.js'></script>
+		<!-- Factories -->
+		<script type="text/javascript" src='./js/factories/user_factory.js'></script>
+		<script type="text/javascript" src='./js/factories/message_factory.js'></script>
+		<script type="text/javascript" src='./js/factories/dev_factory.js'></script>
+		<script type="text/javascript" src='./js/factories/game_factory.js'></script>
+		<script type="text/javascript" src='./js/factories/room_factory.js'></script>
+		<script type="text/javascript" src='./js/factories/article_factory.js'></script>
+		<!-- Controllers -->
+		<script type="text/javascript" src='./js/controllers/register_controller.js'></script>
+		<script type="text/javascript" src='./js/controllers/chatroom_controller.js'></script>
+		<script type="text/javascript" src='./js/controllers/contact_controller.js'></script>
+		<script type="text/javascript" src='./js/controllers/discussions_controller.js'></script>
+		<script type="text/javascript" src='./js/controllers/friends_controller.js'></script>
+		<script type="text/javascript" src='./js/controllers/home_controller.js'></script>
+		<script type="text/javascript" src='./js/controllers/lfg_controller.js'></script>
+		<script type="text/javascript" src='./js/controllers/login_controller.js'></script>
+		<script type="text/javascript" src='./js/controllers/profile_controller.js'></script>
+		<script type="text/javascript" src='./js/controllers/create_room_controller.js'></script>
+		<script type="text/javascript" src='./js/controllers/dev_controller.js'></script>
+
+	<body ng-app='myApp'>
+		<div ng-view=''>
+		</div>
+	</body>
+</html>

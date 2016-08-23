@@ -1,0 +1,639 @@
+/* RGB */
+$color1: rgba(251, 245, 243, 1); //pale
+$color2: #BF7E56; //green grey
+$color3: rgba(82, 43, 71, 1); //maroon purple
+$color4: rgba(123, 8, 40, 1); //burgundy
+$color5: rgba(15, 14, 14, 1); //black
+
+
+// GENERAL
+@font-face {
+    font-family: headingtxt;
+    src: url('./../assets/Enter-The-Grid.ttf');
+}
+@font-face {
+    font-family: bodytxt;
+    src: url('./../assets/Expansiva.otf');
+}
+@font-face {
+  font-family: header;
+  src: url('./../assets/Forque.ttf');
+}
+body{
+	background-color: $color5;
+  font-family: bodytxt;
+	color: $color3;
+}
+button {
+  display: inline-block;
+  margin: 0 1em 0 0;
+  padding: 0em 2em;
+  font-size: 1em;
+  height: 100%;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+button:focus {
+  outline: none
+}
+#create_room_button{
+	border-radius: 5px;
+	font-family: bodytxt;
+}
+.profile_list{
+  list-style-type: none;
+}
+.profile_button{
+	border-radius: 5px;
+	font-family: bodytxt;
+	font-size: .8em;
+}
+.lfg_button{
+  margin-top: 15px;
+	border-radius: 5px;
+	font-family: bodytxt;
+	font-size: .8em;
+}
+
+.hidden_form{
+  display: none;
+}
+.inline{
+  display: inline-block;
+}
+.userimg{
+  height: 50px;
+}
+section.flat button {
+  background-color: $color1;
+  color: #e2c79a;
+  text-shadow: -1px 1px $color5;
+  border: none;
+}
+section.flat button:hover,
+section.flat button.hover {
+  background-color: $color5;
+  text-shadow: -1px 1px $color1;
+}
+section{
+	display: inline-block;
+	align-self: center;
+	height: 100%;
+	line-height: 100%;
+}
+.main_label{
+	font-family: headingtxt;
+	color: $color1;
+}
+.error{
+	font-family: bodytxt;
+	color: $color1;
+	font-size: .7em;
+}
+.click_button{
+	border-radius: .3em;
+	font-family: bodytxt;
+}
+
+
+// HEADER
+#header{
+	background-color: $color2;
+	width: 100%;
+	left: 0;
+	margin-left: 0;
+	margin-right: 0;
+	height: 7%;
+	vertical-align: middle;
+  //right
+  #header_logo{
+    height: 5em;
+    display: inline-block;
+    align-self: center;
+    padding-right: 30%;
+  }
+  #gamer_groups_header{
+    white-space: nowrap;
+    font-family: header;
+    display: inline-block;
+    align-self: center;
+    vertical-align: middle;
+    font-size: 3em;
+  }
+  //left
+  .header_content{
+  	height: 100%;
+  	display: flex;
+    justify-content: center;
+  }
+  section{
+    height: 5em;
+  }
+  button{
+    padding: 1.5em;
+    margin: 0 0 0 0;
+    background-color: $color2;
+    height: 100%;
+  }
+  button:hover{
+    background-color: $color1;
+    height: 100%;
+  }
+  a, a:hover{
+  	color: $color5;
+  	text-decoration: none;
+  	font-family: headingtxt;
+  }
+  @media (max-width: 600px){
+      #header_logo{
+        opacity: 0;
+      }
+  }
+  @media (max-width: 650px)
+  {
+      #header_logo{
+        margin-left: 1em;
+      }
+      #login_section, #register_section
+      {
+          display: none;
+      }
+  }
+}
+
+
+//NAV BAR
+.nav_bar{
+	font-family: headingtxt;
+	text-decoration: none;
+	text-align: center;
+	font-size: 1.2em;
+	padding-left: 0;
+	padding-right: 0;
+	margin-right: 0;
+	margin-left: 0;
+	white-space: nowrap;
+	margin: 1%;
+  a{
+  	padding-left: 3px;
+  	padding-right: 3px;
+  	color: $color1;
+  }
+  a:hover{
+  	text-decoration: none;
+  	color: $color4;
+  }
+  @media (max-width: 650px)
+  {
+      a{
+          display: none;
+      }
+  }
+
+  @media (max-width: 970px)
+  {
+      .navbar-brand
+      {
+          display: none;
+      }
+  }
+}
+
+
+//BOTTOM nav
+#nav_bottom{
+  @media(max-width: 985px){
+    .navbar-brand{
+      display: none;
+    }
+  }
+  a{
+    color: $color5;
+    font-weight: bold;
+  }
+  background-color: $color2;
+  border: none;
+}
+
+
+// HOME PAGE
+.home_container{
+	padding-left: 0;
+	padding-right: 0;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+  padding-bottom: 5em;
+  //articles repeating
+  h1{
+    margin: 1em 0 1em 0;
+  }
+  .row-eq-height{
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      .article_title{
+        font-family: header;
+        font-size: 1.5em;
+      }
+  }
+  //left colum
+  .image_column{
+  	display: flex;
+    justify-content: center;
+    .article_image{
+      height: 10em;
+      border-radius: 50%;
+      align-self: center;
+      box-shadow: 0em 0em 5em 0em $color3;
+    }
+  }
+  @media (max-width: 600px) {
+    h1{
+      display: none;
+    }
+  }
+  //right column
+  .article_column{
+  	text-align: center;
+  	font-family: bodytxt;
+  	color: $color1;
+    .article_paragraph{
+    	font-family: bodytxt;
+    	font-size: .9em;
+    	vertical-align: middle;
+    }
+    a{
+      color: $color3;
+    }
+    a:hover{
+      text-decoration: none;
+      color: $color2;
+    }
+  }
+  @media (max-width: 765px)
+  {
+      .article_image
+      {
+          display: none;
+      }
+  		.article_paragraph
+  		{
+  				padding-left: 3%;
+  				padding-right: 3%;
+  		}
+  		thead{
+  			font-weight: bold;
+  		}
+  }
+}
+
+
+//REGISTER PAGE
+.register_form{
+  padding-bottom: 15%;
+}
+.register_title{
+  text-align: center;
+  padding: 10px;
+  font-family: header;
+}
+@media (max-width: 650px)
+{
+    .register_title
+    {
+        margin-top: 14%;
+    }
+}
+#register_here{
+	margin-top: 10px;
+	display: block;
+}
+@media (max-width: 770px)
+{
+    #register_here
+    {
+        display: none;
+    }
+}
+@media (max-width: 480px)
+{
+    #register_placeholder
+    {
+        margin-bottom: 8%;
+    }
+}
+
+//PROFILE PAGE
+.bar_label{
+  padding-top: 2%;
+  display: inline-block;
+  font-size: 1.1em;
+  color: #232730;
+  white-space: nowrap;
+}
+@media (max-width: 705px){
+  .bar_label{
+    white-space: normal;
+  }
+}
+#labels_container{
+  border-bottom: 1px solid black;
+}
+.centered{
+  text-align: center;
+}
+.bar{
+  width: 15px;
+  height: 100%;
+  background-color: #232730;
+}
+#table_header{
+  font-size: 2.5em;
+  font-family: header;
+  padding-left: 10px;
+
+}
+#rating_chart{
+  border: 2px solid #827251;
+  height: 300px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  background-color: #e2ddc5;
+}
+#bars_container{
+  height: 100%;
+}
+
+
+//LOGIN PAGE
+@media (max-width: 400px) {
+  .main_label
+  {
+    margin-top: 10%;
+  }
+}
+
+
+//LFG FORM
+@media (max-width: 440px) {
+  #lfg_form{
+    margin-top: 10%;
+  }
+}
+
+
+//FRIENDS PAGE
+#friend_request_box{
+  vertical-align: bottom;
+  color: #e2ddc5;
+  font-size: .3em;
+}
+
+.friend_detail{
+  align-self: center;
+}
+
+.outline_content{
+  color: #B5AE98;
+  font-family: bodytxt;
+  border: 1px solid #C59A32;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 20px;
+}
+#pending_requests{
+  text-align: center;
+}
+.request_username{
+  text-align: center;
+}
+.request{
+  display: inline-block;
+}
+.friends_container{
+  padding: 20px;
+}
+.friend_radio_button{
+  align-self: center;
+  text-align: center;
+}
+
+
+//CREATE ROOM
+@media (max-width: 770px){
+  .create_room_form{
+    padding-right: 10%;
+    padding-left: 10%;
+  }
+}
+
+@media (max-width: 525px) {
+  .create_room_form{
+    padding-top: 10%;
+    padding-bottom: 10%;
+  }
+}
+
+
+//CONTACT PAGE
+.contact_us{
+  width: 100%;
+  height: 60%;
+  border: 1px solid #C59A32;
+  border-radius: 10px;
+  padding: 20px;
+  height: 200px;
+  margin-bottom: 15px;
+  color: #B5AE98;
+}
+
+@media (max-width: 765px)
+{
+    .contact_us
+    {
+        width: 90%;
+        margin-right: 5%;
+        margin-left: 5%;
+    }
+    .message_input_title{
+      margin-left: 5%;
+    }
+}
+
+.message_input_title{
+  text-align: center;
+  padding: 10px;
+  font-family: headingtxt;
+  font-size: 1.7em;
+}
+
+.contact_button{
+	border-radius: 5px;
+	font-family: bodytxt;
+	font-size: .1.2em;
+  margin-bottom: 15px;
+  display: inline-block;
+}
+.email{
+  display: inline-block;
+}
+.logo{
+  height: 50px;
+  width: 50px;
+  margin-right: 20px;
+  display: inline-block;
+}
+
+.contact_row{
+  text-align: center;
+}
+
+
+//CHATROOM PAGE
+#rooms_table{
+  color: #232730;
+  font-family: bodytxt;
+  padding: 20px;
+  background-color:#e2ddc5;
+  text-align: center;
+  overflow-x: auto;
+}
+
+th{
+  text-align: center;
+}
+
+.table_link{
+  font-weight: bold;
+  font-family: headingtxt;
+  color: #20546d;
+}
+
+.create_a_room_link:hover{
+  text-decoration: none;
+}
+
+@media (min-width: 651px){
+  td{
+    padding-left: 20px;
+    padding-bottom: 20px;
+    color: #232730;
+    text-align: center;
+  }
+  .panel-default{
+    padding: 3%;
+  }
+  thead{
+    font-weight: bold;
+  }
+}
+
+@media (max-width: 515px){
+  .panel-default{
+    margin-top: 8%;
+  }
+}
+
+@media (max-width: 650px) {
+
+  /* Force table to not be like tables anymore */
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  .panel-default{
+    padding: 3%;
+  }
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr { }
+
+  td {
+    /* Behave  like a "row" */
+    border: none;
+    position: relative;
+    padding-left: 50%;
+    color: #232730;
+  }
+
+  td:before {
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+
+  /*
+  Label the data
+  */
+  td:nth-of-type(1):before { content: "Game:"; font-weight: bold; }
+  td:nth-of-type(2):before { content: "Lobby Size:"; font-weight: bold;}
+  td:nth-of-type(3):before { content: "Gamertype:"; font-weight: bold;}
+  td:nth-of-type(4):before { content: "Age Restricted:"; font-weight: bold;}
+  td:nth-of-type(5):before { content: "Comms:"; font-weight: bold;}
+  td:nth-of-type(6):before { content: ""; font-weight: bold;}
+}
+
+
+//chatroom
+.mini_profile{
+	border: 2px solid #827251;
+	border-radius: 10px;
+	padding: 5px;
+  padding: 10%;
+  color: #B5AE98;
+  margin-bottom: 2%;
+}
+
+.mini_profile > li{
+	color: #B5AE98;
+	font-family: bodytxt;
+}
+.profile_key{
+  font-weight: bold;
+}
+.add_friend_profile_button{
+  margin-top: 10%;
+}
+#chatroom{
+	width: 100%;
+	height: 60%;
+	border: 2px solid #827251;
+	border-radius: 10px;
+	padding: 20px;
+	height: 400px;
+	margin-bottom: 15px;
+	color: #B5AE98;
+}
+
+@media (max-width: 765px) {
+  .push_up{
+    margin-top: 3%;
+  }
+  .mini_profile{
+    padding: 2%;
+  }
+}

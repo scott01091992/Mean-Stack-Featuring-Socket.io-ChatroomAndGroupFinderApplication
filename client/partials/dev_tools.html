@@ -1,0 +1,47 @@
+<div class='container' ng-controller='dev_controller'>
+
+	<div class='header'>
+		<img src=''>
+		<h1>Dev tool -> create game</h1>
+	</div>
+
+	<div class='nav_bar'>
+		<a href='#/home'>Home</a>
+		<a href='#/lfg'>Looking for Group</a>
+		<a href='#/discussions'>Discussions</a>
+		<a href='#/contact'>Contact </a>
+		<a href='#/friends'>Friends</a>
+		<a href='#/profile'>Profile</a>
+	</div>
+
+	<h2>Game</h2>
+
+		<div class='form-group'>
+			<label>Game title:</label>
+			<input type='text' ng-model='game_title'>
+		</div>
+		<div class='form-group'>
+			<label>Genre:</label>
+			<input type='text' ng-model='genre'>
+		</div>
+		<button ng-click='create_game()'>Create</button>
+
+	<h2>Article</h2>
+
+		<div class='form-group'>
+			<label>title:</label>
+			<input type='text' ng-model='title'>
+		</div>
+		<div class='form-group'>
+			<label>Content:</label>
+			<textarea type='text' ng-model='content'></textarea>
+		</div>
+		<div class='form-group'>
+			<label>Image Url:</label>
+			<input type='text' ng-model='url'>
+		</div>
+		<button ng-click='create_article()'>Create</button>
+
+	</div>
+
+</div>
