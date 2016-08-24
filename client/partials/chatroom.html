@@ -1,0 +1,82 @@
+<div ng-controller='chatroom_controller'>
+	<div class='row' id='header'>
+		<div class='col-xs-8 header_content'>
+			<img id='header_logo' src='./assets/gglogo.png'>
+			<span id='gamer_groups_header'> Gamer Groups </span>
+		</div>
+		<div class='col-xs-4 header_content'>
+			 <section id='logout_section' class="flat">
+					<button ng-click='logout'><a href='#' class='login'>Logout</a></button>
+			</section>
+		</div>
+	</div>
+	<div id='placeholder_div' class='row'>
+	</div>
+	<div class='nav_bar'>
+		<a href='#/home'>Home</a>
+		<a href='#/lfg'>Looking for Group</a>
+		<a href='#/discussions'>Discussions</a>
+		<a href='#/contact'>Contact </a>
+		<a href='#/friends'>Friends</a>
+		<a href='#/profile'>Profile</a>
+	</div>
+	<div class='container'>
+		<div class='row chatroom_row'>
+			<div class='col-sm-4 col-md-3'>
+				<div ng-repeat='profile in profiles'>
+					<div class='mini_profile' id='{{profile._id}}'>
+						<ul class='list-unstyled'>
+							<li><span class='profile_key'>User:</span> {{profile.username}}</li>
+							<li ><span class='profile_key'>Style:</span> {{profile.gamer_style}}</li>
+							<li><span class='profile_key'>Comms:</span> {{profile.communication_pref}}</li>
+							<li>
+								<section class='flat push_up'>
+									<button id='profile_id{{profile._id}}' class='click_button add_friend_profile_button' ng-click='add_friend(profile._id)'>Add Friend</button>
+								</section>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div id='profile'>
+				</div>
+			</div>
+			<div class='col-sm-8 col-md-9'>
+				<div id='chatroom'>
+				</div>
+				<form role='form'>
+					<div class='form-group'>
+						<label class='input_label'>Message:</label>
+						<input class='form-control' id='message' type='text' name='message'>
+					</div>
+					<section class='flat'>
+						<button class='profile_button' type='submit'>Send</button>
+					</section>
+				</form>
+			</div>
+		</div>
+	</div>
+	<nav id="nav_bottom" class="navbar navbar-default navbar-fixed-bottom">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#/home">Gamer Groups</a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a href='#/home'>Home</a></li>
+					<li><a href='#/lfg'>Looking for Group</a></li>
+					<li><a href='#/discussions'>Discussions</a></li>
+					<li><a href='#/contact'>Contact</a></li>
+					<li><a href='#/friends'>Friends</a></li>
+					<li><a href='#/profile'>Profile</a></li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+	</nav>
+
+</div>
