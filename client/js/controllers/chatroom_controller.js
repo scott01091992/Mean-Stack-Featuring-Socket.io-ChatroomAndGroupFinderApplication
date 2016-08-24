@@ -18,7 +18,10 @@ myApp.controller('chatroom_controller', function($rootScope, $route, $routeParam
   			socketId = socket.id;
 				console.log('Launch join room from room factory passing in room id as parameter');
 				room_factory.join_room($routeParams.id, socketId, function(output){
-					if(output.errors){
+					if(output.redirect == true){
+						$location.path('/home');
+					}
+					else if(output.errors){
 						console.log('Join room returned error, redirecting to login');
 						$location.path('/login');
 					}else{

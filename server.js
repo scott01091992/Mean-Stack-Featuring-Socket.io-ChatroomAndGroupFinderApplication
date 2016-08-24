@@ -51,7 +51,7 @@ io.sockets.on('connection', function (socket) {
 
 	socket.on('disconnect', function(){
 		console.log('disconnecting user...');
-		leave = function(id, user){
+		leave = function(id, user, callback){
 			var Room = mongoose.model('Rooms');
 			console.log('parameters for leave function: ');
 			console.log(id);
@@ -75,11 +75,13 @@ io.sockets.on('connection', function (socket) {
 										console.log(err);
 									}else{
 										console.log('successfully destroyed room');
+										callback();
 									}
 								});
 							}else{
 								console.log('successfully removed user from the room, returning confirmation');
 								console.log(room);
+								callback();
 							}
 						});
 				}
@@ -91,14 +93,17 @@ io.sockets.on('connection', function (socket) {
 		 console.log(socket.id.substring(2));
 		 socketId = socket.id.substring(2);
 		 Users.findOne({socket: socketId}, function(err, socket_id_user){
-			 console.log('finding user by socket id error:');
-			 console.log(socket_id_user)
-
-			 if(err){console.log(err);}
+			 if(err){
+				 console.log('finding user by socket id error:');
+				 console.log(err);
+			 }
 			 else{
-				 	leave(socket_id_user.room, socket_id_user);
-			 		io.sockets.in(socket.room).emit('server_response_leave', {response: {name: socket_id_user.username, id: socket_id_user._id}});
-					socket.leave(socket.room);
+				 	console.log(socket_id_user);
+				 	leave(socket_id_user.room, socket_id_user, function(){
+						console.log('done');
+						io.sockets.in(socket.room).emit('server_response_leave', {response: {name: socket_id_user.username, id: socket_id_user._id}});
+						socket.leave(socket.room);
+					});
 		 	}
 		 });
 	});

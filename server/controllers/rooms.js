@@ -134,65 +134,75 @@ module.exports = (function(){
 			if(req.session.user){
 				console.log('User is in session');
 				console.log('Getting room using room id from param');
-				Room.findOne({_id: req.params.id},function(err, room){
-					if(err){
+				Room.findOne({_id: req.params.id}, function(err, room){
+					if(room == null){
+						res.json({redirect: true});
+					}
+					else if(err){
 						console.log('Error finding room: '+err);
 						res.json(err);
 					}else{
 						console.log('Found room');
+						console.log(room);
 						console.log('Populating room _users');
 						Users.populate(room, {path: '_users', model: "Users"}, function(err, userroom2){
+							console.log(userroom2);
 							if(err){console.log('Error populating users: '+err);}
-								console.log('updating users socket information');
-								console.log(req.body);
-								console.log('here is the socket info that was sent through ^^^^^^^^');
-								Users.findOneAndUpdate({_id: req.session.user._id}, {socket: req.body.socket}, function(err, user){
-									if(err){console.log('error updaing socket info');}
-									else{console.log('successfully updated socket info');}
-								});
-								var	inRoom = false;
-								console.log('Checking each user to see if this user is already in the room');
-								for(var i = 0; i < userroom2._users.length; i++){
-									if(userroom2._users[i]._id == req.session.user._id){
-										console.log('user is already in the room');
-										inRoom = true;
-										break;
-									}
-								}
-								if(inRoom == true){
-									console.log('User is already in room, returning the room to the factory');
-									userroom2.message = "this is a message";
-									res.json({inRoom: true, room: userroom2});
-								}
-								else{
-									console.log('User was not in the room, adding them to the room');
-									Room.findByIdAndUpdate({_id: req.params.id}, {$push:{_users: req.session.user._id}}, function(err, finalroom){
-										if(err){
-											console.log('There was an error pushing user id into the users array: '+err);
-											res.json(err);
-										}else{
-											console.log('updating user info to new room')
-											Users.findOneAndUpdate({_id: req.session.user._id},{room: req.params.id}, function(err, room_updated_user){
-												if(err){
-													console.log('error updaing user room id:')
-													console.log(err);
+							else{
+									console.log('updating users socket information');
+									console.log(req.body);
+									console.log('here is the socket info that was sent through ^^^^^^^^');
+									Users.findOneAndUpdate({_id: req.session.user._id}, {$set: {socket: req.body.socket}}, function(err, user){
+										if(err){console.log('error updaing socket info');}
+										else{
+											console.log('successfully updated socket info');
+											var	inRoom = false;
+											console.log('Checking each user to see if this user is already in the room');
+											for(var i = 0; i < userroom2._users.length; i++){
+												if(userroom2._users[i]._id == req.session.user._id){
+													console.log('user is already in the room');
+													inRoom = true;
+													break;
 												}
-												else{
-													console.log('no errors updating user room id, user returned:')
-													console.log(room_updated_user);
-												}
-											});
-											console.log('successfully added user to the room, populating _users');
-											Users.populate(finalroom, {path: '_users', model:'Users'} ,function(err, finalroom2){
-												if(err){console.log('Error populating _users: '+err);}
-													console.log('successfully populated room, returning to factory');
-													res.json(finalroom);
-											});
+											}
+											if(inRoom == true){
+												console.log('User is already in room, returning the room to the factory');
+												userroom2.message = "this is a message";
+												res.json({inRoom: true, room: userroom2});
+											}
+											else{
+												console.log('User was not in the room, adding them to the room');
+												Room.findByIdAndUpdate({_id: req.params.id}, {$push:{_users: req.session.user._id}}, function(err, finalroom){
+													if(err){
+														console.log('There was an error pushing user id into the users array: '+err);
+														res.json(err);
+													}else{
+															console.log('updating user info to new room')
+															Users.findOneAndUpdate({_id: req.session.user._id},{room: req.params.id}, function(err, room_updated_user){
+																if(err){
+																	console.log('error updaing user room id:')
+																	console.log(err);
+																}
+																else{
+																	console.log('no errors updating user room id, user returned:');
+																	console.log('successfully added user to the room, populating _users');
+																	Users.populate(finalroom, {path: '_users', model:'Users'} ,function(err, finalroom2){
+																		if(err){console.log('Error populating _users: '+err);}
+																		else{
+																			console.log('successfully populated room, returning to factory');
+																			res.json(finalroom);
+																		}
+																	});
+																}
+															});
+														}
+												});
+											}
 										}
 									});
 								}
 							});
-							}
+						}
 				});
 			}else{
 				console.log('User is not in session: return message object as err');
