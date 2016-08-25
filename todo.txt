@@ -1,0 +1,11 @@
+make queries more specific and remove unneeded data
+add validations and security to forms
+clean code and look for bugs
+remove console logs and improve SEO
+update with html5 tags
+change login/logout button based on login status
+update profile page css
+improve matchmaking algorithm
+get domain
+deploy to cloud
+marketing?

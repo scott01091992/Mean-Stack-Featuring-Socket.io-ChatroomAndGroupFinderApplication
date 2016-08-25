@@ -29,7 +29,6 @@ var server = app.listen(6789, function(){
 var io = require('socket.io').listen(server);
 
 io.sockets.on('connection', function (socket) {
-	console.log(socket);
   console.log('user connected, socket id: '+socket.id);
 
   socket.on('join_room', function(data){
@@ -51,43 +50,6 @@ io.sockets.on('connection', function (socket) {
 
 	socket.on('disconnect', function(){
 		console.log('disconnecting user...');
-		leave = function(id, user, callback){
-			var Room = mongoose.model('Rooms');
-			console.log('parameters for leave function: ');
-			console.log(id);
-			console.log(user);
-			console.log('Leave room function activated...');
-			console.log('Getting room from db with room id');
-			Room.update({"_id": id}, {$pull: {"_users": user._id}}, function(err, room){
-				if(err){
-					console.log(err);
-					console.log('Error removing user from room');
-				}else{
-						Room.findById(id, function(err, the_room){
-							if(err){
-								console.log('there was an error finding the room...')
-								console.log(err);
-							}else if(the_room._users.length < 1){
-								console.log('removing room, no one here');
-								Room.remove({_id: id}, function(err){
-									if(err){
-										console.log('there was an error removing this room');
-										console.log(err);
-									}else{
-										console.log('successfully destroyed room');
-										callback();
-									}
-								});
-							}else{
-								console.log('successfully removed user from the room, returning confirmation');
-								console.log(room);
-								callback();
-							}
-						});
-				}
-			});
-		}
-
 		var Users = mongoose.model('Users');
 		 console.log('User disconnecting: '+socket.id);
 		 console.log(socket.id.substring(2));
@@ -97,16 +59,51 @@ io.sockets.on('connection', function (socket) {
 				 console.log('finding user by socket id error:');
 				 console.log(err);
 			 }
+			 else if(socket_id_user == null){
+				 console.log('socket id has changed');
+
+			 }
 			 else{
+					 leave = function(id, user){
+			 			var Room = mongoose.model('Rooms');
+			 			console.log('parameters for leave function: ');
+			 			console.log(id);
+			 			console.log(user);
+			 			console.log('Leave room function activated...');
+			 			console.log('Getting room from db with room id');
+			 			Room.update({"_id": id}, {$pull: {"_users": user._id}}, function(err, room){
+			 				if(err){
+			 					console.log(err);
+			 					console.log('Error removing user from room');
+			 				}else{
+			 						Room.findById(id, function(err, the_room){
+			 							if(err){
+			 								console.log('there was an error finding the room...')
+			 								console.log(err);
+			 							}else if(the_room._users.length < 1){
+			 								console.log('removing room, no one here');
+			 								Room.remove({_id: id}, function(err){
+			 									if(err){
+			 										console.log('there was an error removing this room');
+			 										console.log(err);
+			 									}else{
+			 										console.log('successfully destroyed room');
+			 									}
+			 								});
+			 							}else{
+			 								console.log('successfully removed user from the room, returning confirmation');
+			 							}
+			 						});
+			 				}
+			 			});
+			 		}
+				 	console.log('here is the socket_id_user: ');
 				 	console.log(socket_id_user);
-				 	leave(socket_id_user.room, socket_id_user, function(){
-						console.log('done');
-						io.sockets.in(socket.room).emit('server_response_leave', {response: {name: socket_id_user.username, id: socket_id_user._id}});
-						socket.leave(socket.room);
-					});
+				 	leave(socket_id_user.room, socket_id_user);
+					io.sockets.in(socket.room).emit('server_response_leave', {response: {name: socket_id_user.username, id: socket_id_user._id}});
+					socket.leave(socket.room);
 		 	}
 		 });
 	});
-
   //all the socket code goes in here!
 });

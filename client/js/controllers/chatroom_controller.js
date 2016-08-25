@@ -61,7 +61,7 @@ myApp.controller('chatroom_controller', function($rootScope, $route, $routeParam
 
 						$scope.$on('$routeChangeStart', function(){
 							console.log('route changing, disconnect socket');
-  						socket.emit('disconnect');
+  						socket.emit('disconnect', {room_id: $routeParams.id});
  						});
 
 						//user sends message emit

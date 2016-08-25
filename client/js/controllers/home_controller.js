@@ -1,4 +1,4 @@
-myApp.controller('home_controller', function($scope, article_factory, user_factory){
+myApp.controller('home_controller', function($scope, $location, $route, article_factory, user_factory){
 	console.log("Loading home controller..");
 
 	console.log("getting all articles...");

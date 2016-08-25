@@ -8,6 +8,9 @@
 @font-face {
   font-family: header;
   src: url("./../assets/Forque.ttf"); }
+@font-face {
+  font-family: chat;
+  src: url("./../assets/Segan-Light.ttf"); }
 body {
   background-color: #0f0e0e;
   font-family: bodytxt;
@@ -488,11 +491,12 @@ section {
   padding: 5px;
   padding: 10%;
   color: #B5AE98;
-  margin-bottom: 2%; }
+  margin-bottom: 2%;
+  font-family: chat; }
 
 .mini_profile > li {
   color: #B5AE98;
-  font-family: bodytxt; }
+  font-family: chat; }
 
 .profile_key {
   font-weight: bold; }
@@ -509,7 +513,11 @@ section {
   padding: 20px;
   height: 400px;
   margin-bottom: 15px;
-  color: #0f0e0e; }
+  color: #0f0e0e;
+  font-family: chat; }
+
+#message {
+  font-family: chat; }
 
 @media (max-width: 765px) {
   .push_up {
