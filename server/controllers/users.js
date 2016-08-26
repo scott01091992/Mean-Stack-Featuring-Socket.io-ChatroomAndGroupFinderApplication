@@ -6,7 +6,8 @@ module.exports = (function(){
 		index: function(req, res){
 			console.log("User index function activated");
 			console.log("Finding all users...");
-			Users.find({}, function(err, users){
+			Users.find({}, '-password -room -socket',
+				function(err, users){
 		        if (err){
 							console.log("There was an error finding all users");
 		          console.log(err);
@@ -43,7 +44,7 @@ module.exports = (function(){
 						}
 						id_array = _.difference(id_array, current._friends);
 						console.log('getting all users in the left over id_array');
-						Users.find({'_id': { $in: id_array}}, function(err, docs){
+						Users.find({'_id': { $in: id_array}}, '-password -room -socket', function(err, docs){
 							if(err){
 								console.log('there was an error getting non_friends: ');
 								console.log(err);
@@ -86,7 +87,7 @@ module.exports = (function(){
 							}
 							else{
 								console.log("User saved successfully, returning user object to factory");
-								res.json(user);
+								res.json({result: "success"});
 							}
 						});
 					}
@@ -98,7 +99,7 @@ module.exports = (function(){
 			console.log("Is the user logged in?");
 			if(req.session.user){
 				console.log("User is logged in, findging user by session user id...");
-				Users.findOne({_id: req.session.user._id}, function(err, user){
+				Users.findOne({_id: req.session.user._id}, "-password -room -socket", function(err, user){
 			        if (err){
 								console.log("There was an error getting user, returning error to factory");
 	 							res.json(err);
@@ -174,7 +175,7 @@ module.exports = (function(){
 									console.log(err);
 								}else{
 									console.log('finding user with session user_id... populating...');
-									Users.findOne({_id: req.session.user._id}).populate('_friends').exec(function(err, user){
+									Users.findOne({_id: req.session.user._id}, "-password -room -socket").populate('_friends', "-password -room -socket").exec(function(err, user){
 										if(err){
 											console.log('There was an error getting user: ');
 											res.json(err);
@@ -199,7 +200,7 @@ module.exports = (function(){
 					res.json(err);
 				}else{
 					console.log('finding user with session user_id... populating...');
-					Users.findOne({_id: req.session.user._id}).populate('_friends').exec(function(err, user){
+					Users.findOne({_id: req.session.user._id}, "-password -room -socket").populate('_friends', "-password -room -socket").exec(function(err, user){
 						if(err){
 							console.log('There was an error getting user: ');
 							res.json(err);
@@ -214,7 +215,7 @@ module.exports = (function(){
 		update_rating: function(req, res){
 			console.log('user update_rating function activated');
 		console.log('getting requestee...');
-			Users.findOne({_id: req.params.id}, function(err, result){
+			Users.findOne({_id: req.params.id}, "-password -socket", function(err, result){
 				for(var j = 0; j < result._hardcore_rating.length; j++){
 					console.log('comparing current user id to requestees ratings '+j);
 					if(req.session.user._id == result._hardcore_rating[j]){
@@ -324,7 +325,7 @@ module.exports = (function(){
 		user_info: function(req, res){
 			console.log("User user_info function activated");
 			console.log("Finding user by param id...");
-			Users.findOne({_id: req.params.id}, function(err, user){
+			Users.findOne({_id: req.params.id}, "-password -room -socket", function(err, user){
 				if(err){
 					console.log("Error finding user: ");
 					console.log(err);
@@ -414,7 +415,7 @@ module.exports = (function(){
 		friend_index: function(req, res){
 			console.log('User friend index function activated');
 			console.log('finding user with session user_id... populating...');
-			Users.findOne({_id: req.session.user._id}).populate('_friends').exec(function(err, user){
+			Users.findOne({_id: req.session.user._id}, "-password -room -socket").populate('_friends', "-password -room -socket").exec(function(err, user){
 				if(err){
 					console.log('There was an error getting user: ');
 					res.json(err);

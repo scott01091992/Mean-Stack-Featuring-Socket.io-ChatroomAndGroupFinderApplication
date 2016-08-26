@@ -2,8 +2,6 @@ var users = require('./../controllers/users.js');
 
 var games = require('./../controllers/games.js')
 
-var genres = require('./../controllers/genres.js');
-
 var articles = require('./../controllers/articles.js');
 
 var rooms = require('./../controllers/rooms.js');
@@ -44,7 +42,5 @@ module.exports = function(app){
 	app.get('/user/friend/add/:id', users.add_friend);
 	app.get('/user/friends/:id', users.friend_index);
 	app.post('/user/remove_friend/:id', users.friend_remove);
-
-
 
 }

@@ -168,6 +168,10 @@ module.exports = (function(){
 											if(inRoom == true){
 												console.log('User is already in room, returning the room to the factory');
 												userroom2.message = "this is a message";
+												for(user in userroom2){
+													delete user["password"];
+												}
+												console.log(userroom2);
 												res.json({inRoom: true, room: userroom2});
 											}
 											else{
@@ -190,6 +194,10 @@ module.exports = (function(){
 																		if(err){console.log('Error populating _users: '+err);}
 																		else{
 																			console.log('successfully populated room, returning to factory');
+																			for(user in finalroom){
+																				delete user["password"];
+																			}
+																			console.log(finalroom);
 																			res.json(finalroom);
 																		}
 																	});
